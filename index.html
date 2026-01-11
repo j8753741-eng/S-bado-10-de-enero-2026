@@ -17,14 +17,27 @@ body{
 .contenedor{
     max-width:900px;
     margin:auto;
-    padding:90px 35px;
+    padding:80px 30px;
 }
 
 .fecha{
     font-family:'Cinzel', serif;
     font-size:48px;
     color:#d1a9ff;
+    margin-bottom:60px;
+}
+
+.video{
     margin-bottom:70px;
+    text-align:center;
+}
+
+.video iframe{
+    width:100%;
+    max-width:800px;
+    height:450px;
+    border-radius:18px;
+    box-shadow:0 0 40px rgba(155,107,232,.4);
 }
 
 .carta{
@@ -46,7 +59,7 @@ body{
 }
 
 .botones{
-    margin-top:120px;
+    margin-top:90px;
     text-align:center;
 }
 
@@ -67,7 +80,7 @@ body{
 }
 
 .final-btn{
-    margin-top:170px;
+    margin-top:150px;
     text-align:center;
 }
 
@@ -110,6 +123,14 @@ body{
 Sábado 10 de enero de 2026, por la noche
 </div>
 
+<!-- VIDEO VISIBLE -->
+<div class="video">
+<iframe id="player"
+src="https://www.youtube.com/embed/dH7_By3Y2i0?enablejsapi=1"
+allow="autoplay; encrypted-media"
+allowfullscreen></iframe>
+</div>
+
 <div class="carta">
 
 <p>Amor mío,</p>
@@ -128,24 +149,12 @@ Sábado 10 de enero de 2026, por la noche
 
 <p>Este amor que siento por ti no es pasajero, no es ligero, no es superficial. Es un amor que se queda, que resiste, que espera. Un amor que no se desespera por la distancia, sino que la enfrenta con paciencia y esperanza. Porque sé que todo esto vale la pena, porque sé que tú vales cada segundo de espera.</p>
 
-<p>Si supieras cuánto deseo abrazarte ahora mismo… No un abrazo rápido, no uno de cortesía. Hablo de ese abrazo largo, profundo, en el que el tiempo se rinde. Ese abrazo donde mi pecho encuentra el tuyo y el mundo deja de importar. Ese abrazo donde no hace falta decir “te extrañé”, porque el cuerpo lo grita solo.</p>
-
-<p>Quisiera tomar tus manos esta noche, mirarte a los ojos y decirte todo esto sin escribirlo. Quisiera que sintieras el latido acelerado de mi corazón cuando estás cerca. Quisiera que supieras que cada latido pronuncia tu nombre en silencio. Pero como no puedo, te dejo estas palabras, cargadas de amor, de deseo, de verdad.</p>
-
-<p>La distancia no ha hecho más que confirmarme algo: que te amo de una manera real. Que no necesito tenerte todos los días frente a mí para saber que eres la persona que quiero en mi vida. Que incluso lejos, sigues siendo mi lugar seguro, mi pensamiento constante, mi elección diaria.</p>
-
-<p>Hay algo muy poderoso en amarte así. En desearte sin poseerte. En cuidarte incluso desde lejos. En imaginar futuros mientras el presente espera. Y aun así, no negaré que duele. Duele no poder besarte cuando te extraño. Duele no poder abrazarte cuando el día pesa. Pero ese dolor no es vacío, es un dolor lleno de amor, lleno de ti.</p>
-
-<p>Esta noche, mientras suena esta canción, quiero que sepas que mi amor viaja hacia ti. Que cruza cualquier distancia, cualquier obstáculo, cualquier silencio. Que llega a ti como un susurro, como una caricia invisible, como un abrazo que no se ve pero se siente.</p>
-
-<p>Prometo guardarte cada beso que no puedo darte ahora. Prometo guardarte cada abrazo pendiente. Prometo que cuando por fin estemos juntos, todo este amor acumulado explotará en gestos, en miradas, en besos interminables.</p>
+<p>Si supieras cuánto deseo abrazarte ahora mismo…</p>
 
 <p>Hasta ese momento, aquí estaré. Amándote. Pensándote. Esperándote.</p>
 
-<p>Con un amor paciente, apasionado y verdadero.<br>
-Con el corazón abierto y los brazos listos para cuando regreses a ellos.<br>
-Te amo más de lo que estas palabras pueden contener.<br>
-Te amo incluso en la distancia.<br>
+<p>Te amo más de lo que estas palabras pueden contener.  
+Te amo incluso en la distancia.  
 Te amo esta noche… y todas las que vendrán. 💜</p>
 
 <div class="firma">
@@ -155,9 +164,9 @@ Te amo esta noche… y todas las que vendrán. 💜</p>
 </div>
 
 <div class="botones">
-<button onclick="playMusic()">Iniciar música</button>
-<button onclick="pauseMusic()">Pausar</button>
-<button onclick="playMusic()">Continuar</button>
+<button onclick="player.playVideo()">Iniciar música</button>
+<button onclick="player.pauseVideo()">Pausar</button>
+<button onclick="player.playVideo()">Continuar</button>
 </div>
 
 <div class="final-btn">
@@ -175,28 +184,12 @@ car t’aimer est ma vérité.
 </p>
 </div>
 
-<iframe id="musicFrame"
-src="https://www.youtube.com/embed/bk3S6vaMi6g?enablejsapi=1"
-allow="autoplay"
-style="display:none;"></iframe>
-
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-let frame = document.getElementById("musicFrame");
-
-function playMusic(){
-    frame.contentWindow.postMessage(
-        '{"event":"command","func":"playVideo","args":""}',
-        '*'
-    );
+let player;
+function onYouTubeIframeAPIReady(){
+    player = new YT.Player('player');
 }
-
-function pauseMusic(){
-    frame.contentWindow.postMessage(
-        '{"event":"command","func":"pauseVideo","args":""}',
-        '*'
-    );
-}
-
 function mostrarFinal(){
     document.getElementById("pantallaFinal").style.display="flex";
 }

@@ -9,8 +9,8 @@
 <style>
 body{
     margin:0;
-    background:linear-gradient(180deg,#0b0016,#18002a);
-    color:#f7efff;
+    background:linear-gradient(180deg,#0a0015,#1b0033);
+    color:#f6efff;
     font-family:'Playfair Display', serif;
 }
 
@@ -22,61 +22,56 @@ body{
 
 .fecha{
     font-family:'Cinzel', serif;
-    font-size:48px;
-    color:#d1a9ff;
+    font-size:46px;
+    color:#d6b3ff;
+    margin-bottom:50px;
+}
+
+.inicio-musica{
+    text-align:center;
     margin-bottom:60px;
+}
+
+.inicio-musica button{
+    background:#c7a2ff;
+    color:#1a002c;
+    border:none;
+    padding:16px 48px;
+    font-size:18px;
+    border-radius:60px;
+    cursor:pointer;
 }
 
 .video{
     margin-bottom:70px;
     text-align:center;
+    display:none;
 }
 
 .video iframe{
     width:100%;
-    max-width:800px;
-    height:450px;
+    max-width:820px;
+    height:460px;
     border-radius:18px;
-    box-shadow:0 0 40px rgba(155,107,232,.4);
+    box-shadow:0 0 45px rgba(160,110,255,.45);
 }
 
 .carta{
-    border-left:3px solid #9b6be8;
+    border-left:3px solid #a87cff;
     padding-left:45px;
 }
 
 .carta p{
     font-size:22px;
-    line-height:2.35;
+    line-height:2.4;
     margin-bottom:42px;
     text-align:justify;
 }
 
 .firma{
-    margin-top:160px;
+    margin-top:140px;
     font-size:23px;
-    color:#ead9ff;
-}
-
-.botones{
-    margin-top:90px;
-    text-align:center;
-}
-
-.botones button{
-    background:none;
-    border:2px solid #c39bff;
-    color:#f7efff;
-    padding:14px 36px;
-    font-size:17px;
-    border-radius:50px;
-    margin:10px;
-    cursor:pointer;
-}
-
-.botones button:hover{
-    background:#c39bff;
-    color:#1a002c;
+    color:#eddcff;
 }
 
 .final-btn{
@@ -85,10 +80,10 @@ body{
 }
 
 .final-btn button{
-    background:#c39bff;
+    background:#c7a2ff;
     color:#1a002c;
     border:none;
-    padding:16px 46px;
+    padding:16px 48px;
     font-size:18px;
     border-radius:60px;
     cursor:pointer;
@@ -123,8 +118,11 @@ body{
 Sábado 10 de enero de 2026, por la noche
 </div>
 
-<!-- VIDEO VISIBLE -->
-<div class="video">
+<div class="inicio-musica" id="botonInicio">
+<button onclick="iniciarMusica()">Iniciar música</button>
+</div>
+
+<div class="video" id="contenedorVideo">
 <iframe id="player"
 src="https://www.youtube.com/embed/dH7_By3Y2i0?enablejsapi=1"
 allow="autoplay; encrypted-media"
@@ -153,20 +151,12 @@ allowfullscreen></iframe>
 
 <p>Hasta ese momento, aquí estaré. Amándote. Pensándote. Esperándote.</p>
 
-<p>Te amo más de lo que estas palabras pueden contener.  
-Te amo incluso en la distancia.  
-Te amo esta noche… y todas las que vendrán. 💜</p>
+<p>Te amo más de lo que estas palabras pueden contener. Te amo incluso en la distancia. Te amo esta noche… y todas las que vendrán. 💜</p>
 
 <div class="firma">
 <strong>Juan Kaleth Mendoza Primera</strong>
 </div>
 
-</div>
-
-<div class="botones">
-<button onclick="player.playVideo()">Iniciar música</button>
-<button onclick="player.pauseVideo()">Pausar</button>
-<button onclick="player.playVideo()">Continuar</button>
 </div>
 
 <div class="final-btn">
@@ -179,8 +169,8 @@ Te amo esta noche… y todas las que vendrán. 💜</p>
 <p>
 Mon amour Valeria Isabel Petro Villazón,<br><br>
 Même dans la distance et le silence,<br>
-mon cœur te choisira toujours,<br>
-car t’aimer est ma vérité.
+je te choisis chaque jour,<br>
+car t’aimer est ma plus belle vérité.
 </p>
 </div>
 
@@ -190,10 +180,17 @@ let player;
 function onYouTubeIframeAPIReady(){
     player = new YT.Player('player');
 }
+
+function iniciarMusica(){
+    document.getElementById("contenedorVideo").style.display="block";
+    document.getElementById("botonInicio").style.display="none";
+    player.playVideo();
+}
+
 function mostrarFinal(){
     document.getElementById("pantallaFinal").style.display="flex";
 }
 </script>
 
 </body>
-    </html>
+</html>
